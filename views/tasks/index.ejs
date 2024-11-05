@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title>Liste des tâches</title></head>
+<body>
+  <h1>Liste des Tâches</h1>
+  <a href="/tasks/new">Ajouter une Tâche</a>
+  <ul>
+    <% tasks.forEach(task => { %>
+      <li>
+        <strong><%= task.title %></strong> - <%= task.category %> - <%= task.dueDate.toDateString() %>
+        <a href="/tasks/<%= task._id %>/edit">Modifier</a>
+        <form action="/tasks/<%= task._id %>/delete" method="POST" style="display: inline;">
+          <button type="submit">Supprimer</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

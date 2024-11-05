@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier la Tâche</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Modifier la Tâche</h1>
+    <form action="/tasks/<%= task._id %>" method="POST">
+        <label for="title">Titre:</label>
+        <input type="text" id="title" name="title" value="<%= task.title %>" required>
+
+        <label for="description">Description (optionnelle):</label>
+        <input type="text" id="description" name="description" value="<%= task.description %>">
+
+        <label for="dueDate">Date d'échéance:</label>
+        <input type="date" id="dueDate" name="dueDate" value="<%= task.dueDate.toISOString().split('T')[0] %>" required>
+
+        <label for="category">Catégorie:</label>
+        <input type="text" id="category" name="category" value="<%= task.category %>" required>
+
+        <button type="submit">Mettre à jour</button>
+    </form>
+    <a href="/tasks">Retour à la liste</a>
+</body>
+</html>
